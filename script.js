@@ -148,6 +148,68 @@ if (document.readyState === 'loading') {
 }
 
 // ===================================
+// COMPARISON SLIDER (NOUVEAU)
+// ===================================
+const sliders = document.querySelectorAll('.comparison-slider');
+
+sliders.forEach(slider => {
+    // Elements
+    const beforeImage = slider.querySelector('.c-before');
+    const beforeImgTag = beforeImage.querySelector('img');
+    const handle = slider.querySelector('.c-handle');
+    let isDown = false;
+
+    // Functions
+    const move = (e) => {
+        if (!isDown) return;
+        
+        // Get dimensions
+        const rect = slider.getBoundingClientRect();
+        const x = (e.pageX || e.touches[0].pageX) - rect.left;
+        
+        // Boundaries
+        let position = Math.max(0, Math.min(x, rect.width));
+        let percentage = (position / rect.width) * 100;
+
+        // Apply styles
+        beforeImage.style.width = `${percentage}%`;
+        handle.style.left = `${percentage}%`;
+    };
+
+    // Event Listeners - Mouse
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        move(e);
+    });
+    
+    window.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        move(e);
+        e.preventDefault(); // Prevent selection
+    });
+
+    // Event Listeners - Touch (Mobile)
+    slider.addEventListener('touchstart', (e) => {
+        isDown = true;
+        move(e);
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+        isDown = false;
+    });
+
+    window.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        move(e);
+        // e.preventDefault(); // Optional depending on scroll behavior
+    }, { passive: false });
+});
+
+// ===================================
 // FORM HANDLING
 // ===================================
 const contactForm = document.getElementById('contactForm');
@@ -186,13 +248,6 @@ contactForm.addEventListener('submit', (e) => {
             submitButton.style.background = '';
             submitButton.disabled = false;
         }, 3000);
-        
-        // In a real application, you would send the data to a server:
-        // fetch('/api/contact', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(formData)
-        // });
         
         console.log('Form submitted:', formData);
     }, 1500);

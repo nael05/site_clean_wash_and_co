@@ -569,7 +569,7 @@ body {
     opacity: 1;
 }
 
-.service-content {
+.service-text {
     padding: var(--spacing-md);
     flex: 1;
 }
@@ -697,7 +697,7 @@ body {
 }
 
 /* ===================================
-   GALLERY SECTION
+   GALLERY SECTION (STATIC) - OLD
    =================================== */
 .gallery {
     padding: var(--spacing-xl) 0;
@@ -709,85 +709,6 @@ body {
     text-align: center;
     max-width: 600px;
     margin: var(--spacing-sm) auto 0;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
-}
-
-.gallery-item {
-    position: relative;
-    height: 280px;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.gallery-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, transparent, rgba(5, 8, 20, 0.8));
-    z-index: 1;
-    transition: var(--transition);
-}
-
-.gallery-item:hover::before {
-    background: linear-gradient(to bottom, rgba(0, 240, 255, 0.2), rgba(5, 8, 20, 0.9));
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.15) rotate(2deg);
-}
-
-.gallery-item:hover {
-    box-shadow: 0 20px 50px rgba(0, 240, 255, 0.3);
-    border: 2px solid var(--primary);
-}
-
-.gallery-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: var(--spacing-md);
-    z-index: 2;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: var(--transition);
-}
-
-.gallery-item:hover .gallery-overlay {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.gallery-overlay h3 {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    color: var(--text-light);
-    margin-bottom: 0.5rem;
-}
-
-.gallery-overlay p {
-    color: var(--primary);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 /* ===================================
@@ -1032,7 +953,128 @@ body {
 }
 
 /* ===================================
-   RESPONSIVE DESIGN
+   NEW COMPARISON SLIDER STYLES
+   =================================== */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.comparison-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.comparison-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--primary);
+}
+
+.comparison-slider {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: ew-resize; /* Cursor shows resize arrows */
+}
+
+/* Images setup */
+.c-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.c-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* Prevent image dragging */
+    user-select: none;
+}
+
+/* "Avant" Image (Foreground) - Initially 50% width */
+.c-before {
+    width: 50%;
+    z-index: 2;
+    border-right: 2px solid var(--primary); /* Neon Line */
+}
+
+/* Filter to make the "Before" image look dirty/old */
+.c-before img {
+    filter: grayscale(100%) contrast(120%) brightness(80%) sepia(30%);
+    width: 200%; /* Important: Counteract the container width to keep image ratio */
+    max-width: none;
+}
+
+/* "Après" Image (Background) */
+.c-after {
+    z-index: 1;
+}
+
+/* Labels */
+.c-label {
+    position: absolute;
+    top: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.c-before .c-label {
+    left: 10px;
+    background: rgba(255, 0, 110, 0.7); /* Pink for dirty */
+}
+
+.c-after .c-label {
+    right: 10px;
+    background: rgba(0, 240, 255, 0.7); /* Cyan for clean */
+}
+
+/* Handle (Circle) */
+.c-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: var(--bg-dark);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+    pointer-events: none; /* Let clicks pass through to container */
+}
+
+.c-handle .c-circle {
+    display: flex;
+    color: var(--primary);
+}
+
+/* ===================================
+   RESPONSIVE DESIGN UPDATE
    =================================== */
 @media (max-width: 968px) {
     .contact-grid {
@@ -1054,14 +1096,6 @@ body {
     .step-number {
         font-size: 2.5rem;
         min-width: 60px;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-    
-    .gallery-item {
-        height: 250px;
     }
 }
 
@@ -1243,7 +1277,7 @@ body {
         height: 180px;
     }
     
-    .service-content {
+    .service-text {
         padding: 1rem;
     }
     

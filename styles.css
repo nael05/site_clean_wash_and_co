@@ -42,6 +42,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
@@ -49,7 +51,8 @@ body {
     background: var(--bg-dark);
     color: var(--text-light);
     line-height: 1.6;
-    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    width: 100%;
     position: relative;
 }
 
@@ -57,6 +60,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    width: 100%;
 }
 
 /* ===================================
@@ -93,7 +97,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    z-index: 1001; /* Above mobile menu */
+    z-index: 1001;
 }
 
 .logo-clean {
@@ -155,7 +159,7 @@ body {
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 1001; /* Above mobile menu */
+    z-index: 1001;
 }
 
 .nav-toggle span {
@@ -175,6 +179,7 @@ body {
     align-items: center;
     padding-top: 80px;
     overflow: hidden;
+    width: 100%;
 }
 
 .hero-background {
@@ -250,21 +255,24 @@ body {
     position: relative;
     z-index: 10;
     padding: var(--spacing-lg) 0;
+    width: 100%;
 }
 
 .hero-text {
     max-width: 800px;
     animation: fadeInUp 1s ease-out;
+    width: 100%;
 }
 
 .hero-title {
     font-family: var(--font-display);
-    /* Increased minimum size for better mobile presence */
-    font-size: clamp(3rem, 10vw, 5.5rem); 
+    font-size: clamp(2.5rem, 8vw, 5rem);
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: var(--spacing-md);
     text-transform: uppercase;
+    /* Suppression des tirets et césures */
+    white-space: normal;
 }
 
 .title-line {
@@ -328,6 +336,7 @@ body {
     gap: var(--spacing-sm);
     flex-wrap: wrap;
     animation: fadeInUp 1s ease-out 1s backwards;
+    width: 100%;
 }
 
 .btn {
@@ -345,6 +354,7 @@ body {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .btn::before {
@@ -395,6 +405,7 @@ body {
     gap: var(--spacing-md);
     margin-top: var(--spacing-xl);
     animation: fadeInUp 1s ease-out 1.2s backwards;
+    width: 100%;
 }
 
 .stat-card {
@@ -470,6 +481,7 @@ body {
 .services {
     padding: var(--spacing-xl) 0;
     position: relative;
+    width: 100%;
 }
 
 .section-header {
@@ -496,8 +508,9 @@ body {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-md);
+    width: 100%;
 }
 
 .service-card {
@@ -637,12 +650,14 @@ body {
 .process {
     padding: var(--spacing-xl) 0;
     background: linear-gradient(180deg, transparent, rgba(10, 14, 39, 0.3), transparent);
+    width: 100%;
 }
 
 .process-timeline {
     max-width: 900px;
     margin: 0 auto;
     position: relative;
+    width: 100%;
 }
 
 .process-timeline::before {
@@ -701,11 +716,12 @@ body {
 }
 
 /* ===================================
-   GALLERY SECTION (STATIC) - OLD
+   GALLERY SECTION
    =================================== */
 .gallery {
     padding: var(--spacing-xl) 0;
     position: relative;
+    width: 100%;
 }
 
 .gallery-subtitle {
@@ -720,6 +736,7 @@ body {
    =================================== */
 .contact {
     padding: var(--spacing-xl) 0;
+    width: 100%;
 }
 
 .contact-grid {
@@ -727,6 +744,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--spacing-lg);
     align-items: start;
+    width: 100%;
 }
 
 .contact-info {
@@ -794,6 +812,7 @@ body {
     border-radius: 16px;
     padding: var(--spacing-md);
     backdrop-filter: blur(10px);
+    width: 100%;
 }
 
 .form-group {
@@ -844,6 +863,7 @@ body {
     border-top: 1px solid var(--border-color);
     padding: var(--spacing-lg) 0 var(--spacing-md);
     margin-top: var(--spacing-xl);
+    width: 100%;
 }
 
 .footer-content {
@@ -999,6 +1019,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--spacing-lg);
     margin-top: var(--spacing-lg);
+    width: 100%;
 }
 
 .comparison-card {
@@ -1023,10 +1044,9 @@ body {
     height: 250px;
     overflow: hidden;
     border-radius: 12px;
-    cursor: ew-resize; /* Cursor shows resize arrows */
+    cursor: ew-resize;
 }
 
-/* Images setup */
 .c-image {
     position: absolute;
     top: 0;
@@ -1041,30 +1061,26 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    pointer-events: none; /* Prevent image dragging */
+    pointer-events: none;
     user-select: none;
 }
 
-/* "Avant" Image (Foreground) - Initially 50% width */
 .c-before {
     width: 50%;
     z-index: 2;
-    border-right: 2px solid var(--primary); /* Neon Line */
+    border-right: 2px solid var(--primary);
 }
 
-/* Filter to make the "Before" image look dirty/old */
 .c-before img {
     filter: grayscale(100%) contrast(120%) brightness(80%) sepia(30%);
-    width: 200%; /* Important: Counteract the container width to keep image ratio */
+    width: 200%;
     max-width: none;
 }
 
-/* "Après" Image (Background) */
 .c-after {
     z-index: 1;
 }
 
-/* Labels */
 .c-label {
     position: absolute;
     top: 10px;
@@ -1080,15 +1096,14 @@ body {
 
 .c-before .c-label {
     left: 10px;
-    background: rgba(255, 0, 110, 0.7); /* Pink for dirty */
+    background: rgba(255, 0, 110, 0.7);
 }
 
 .c-after .c-label {
     right: 10px;
-    background: rgba(0, 240, 255, 0.7); /* Cyan for clean */
+    background: rgba(0, 240, 255, 0.7);
 }
 
-/* Handle (Circle) */
 .c-handle {
     position: absolute;
     top: 50%;
@@ -1104,7 +1119,7 @@ body {
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
-    pointer-events: none; /* Let clicks pass through to container */
+    pointer-events: none;
 }
 
 .c-handle .c-circle {
@@ -1116,14 +1131,13 @@ body {
    RESPONSIVE DESIGN UPDATE
    =================================== */
 
-/* Tablette (et petits laptops) */
+/* Tablette */
 @media (max-width: 1024px) {
     .hero-title {
         font-size: 4rem;
     }
     
     .comparison-grid {
-        /* Force 2 columns on tablets instead of squeezing 3 */
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -1169,11 +1183,13 @@ body {
     
     .container {
         padding: 0 1.5rem;
+        width: 100%;
+        overflow: hidden;
     }
     
-    /* Improved Mobile Navigation */
+    /* Navigation Mobile */
     .nav-links {
-        position: fixed; /* Fixed instead of absolute for better UX */
+        position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
@@ -1186,11 +1202,12 @@ body {
         backdrop-filter: blur(20px);
         padding: var(--spacing-md);
         gap: 2rem;
-        transform: translateX(100%); /* Slide from right */
+        transform: translateX(100%);
         opacity: 0;
         visibility: hidden;
         transition: var(--transition);
         z-index: 1000;
+        width: 100%;
     }
     
     .nav-links.active {
@@ -1200,7 +1217,7 @@ body {
     }
     
     .nav-link {
-        font-size: 1.5rem; /* Bigger links on mobile */
+        font-size: 1.5rem;
     }
     
     .nav-toggle {
@@ -1226,7 +1243,7 @@ body {
     .services-grid, 
     .comparison-grid,
     .gallery-grid {
-        grid-template-columns: 1fr; /* Force single column */
+        grid-template-columns: 1fr;
     }
     
     .process-timeline::before {
@@ -1251,18 +1268,21 @@ body {
     .hero-buttons {
         flex-direction: column;
         width: 100%;
+        max-width: 100%;
     }
     
     .btn {
         width: 100%;
         justify-content: center;
+        box-sizing: border-box;
+        white-space: normal;
+        text-align: center;
     }
     
     .scroll-indicator {
         display: none;
     }
     
-    /* Fix sticky contact */
     .contact-info {
         position: relative;
         top: 0;
@@ -1282,10 +1302,13 @@ body {
         padding: 0 1rem;
     }
     
-    /* BIGGER TEXT FOR MOBILE AS REQUESTED */
+    /* SOLUTION : La taille de police est fluide. 
+       10.5vw signifie "10.5% de la largeur de l'écran".
+       Cela garantit que le mot rentre TOUJOURS. */
     .hero-title {
-        font-size: 2.8rem; /* Much larger than before */
+        font-size: 10.5vw;
         line-height: 1.1;
+        white-space: normal;
     }
     
     .logo {
@@ -1310,7 +1333,7 @@ body {
     }
     
     .process-timeline::before {
-        display: none; /* Remove line on very small screens for cleaner look */
+        display: none;
     }
     
     .step-number {
@@ -1330,7 +1353,7 @@ body {
     .form-group select,
     .form-group textarea {
         padding: 0.875rem;
-        font-size: 1rem; /* Prevent zoom on iOS input focus */
+        font-size: 1rem;
     }
     
     .info-item {

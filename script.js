@@ -25,10 +25,12 @@ navToggle.addEventListener('click', () => {
         spans[0].style.transform = 'rotate(45deg) translateY(10px)';
         spans[1].style.opacity = '0';
         spans[2].style.transform = 'rotate(-45deg) translateY(-10px)';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
     } else {
         spans[0].style.transform = 'none';
         spans[1].style.opacity = '1';
         spans[2].style.transform = 'none';
+        document.body.style.overflow = ''; // Restore scrolling
     }
 });
 
@@ -64,6 +66,27 @@ navLinkElements.forEach(link => {
         spans[0].style.transform = 'none';
         spans[1].style.opacity = '1';
         spans[2].style.transform = 'none';
+        document.body.style.overflow = '';
+    });
+});
+
+// ===================================
+// SCROLL TO TOP BUTTON
+// ===================================
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        scrollTopBtn.classList.add('visible');
+    } else {
+        scrollTopBtn.classList.remove('visible');
+    }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
     });
 });
 
@@ -148,7 +171,7 @@ if (document.readyState === 'loading') {
 }
 
 // ===================================
-// COMPARISON SLIDER (NOUVEAU)
+// COMPARISON SLIDER
 // ===================================
 const sliders = document.querySelectorAll('.comparison-slider');
 
@@ -165,7 +188,8 @@ sliders.forEach(slider => {
         
         // Get dimensions
         const rect = slider.getBoundingClientRect();
-        const x = (e.pageX || e.touches[0].pageX) - rect.left;
+        const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+        const x = clientX - rect.left;
         
         // Boundaries
         let position = Math.max(0, Math.min(x, rect.width));
@@ -189,7 +213,7 @@ sliders.forEach(slider => {
     window.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         move(e);
-        e.preventDefault(); // Prevent selection
+        e.preventDefault(); 
     });
 
     // Event Listeners - Touch (Mobile)
@@ -205,7 +229,6 @@ sliders.forEach(slider => {
     window.addEventListener('touchmove', (e) => {
         if (!isDown) return;
         move(e);
-        // e.preventDefault(); // Optional depending on scroll behavior
     }, { passive: false });
 });
 

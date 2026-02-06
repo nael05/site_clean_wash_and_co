@@ -732,30 +732,108 @@ body {
 }
 
 /* ===================================
-   CONTACT SECTION
+   CONTACT SECTION (DESIGN AMÉLIORÉ)
    =================================== */
 .contact {
     padding: var(--spacing-xl) 0;
-    width: 100%;
+    position: relative;
 }
 
-.contact-grid {
+/* Grille des cartes de contact */
+.contact .info-items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-lg);
-    align-items: start;
-    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
 }
 
-.contact-info {
-    position: sticky;
-    top: 100px;
+/* Style de base des cartes */
+.contact .info-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    text-decoration: none; /* Pour les cartes cliquables <a> */
+    color: inherit;
 }
 
-.contact-description {
+/* Effet au survol des cartes cliquables */
+.contact .clickable-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    background: rgba(0, 240, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15), var(--shadow-glow);
+}
+
+/* Icônes */
+.contact .info-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact .clickable-card:hover .info-icon {
+    background: rgba(0, 240, 255, 0.1);
+    transform: scale(1.1);
+}
+
+/* Textes à l'intérieur des cartes */
+.contact .info-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     color: var(--text-gray);
-    margin: var(--spacing-md) 0;
-    line-height: 1.7;
+    margin-bottom: 0.5rem;
+}
+
+.contact .info-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+/* Texte d'action (Appeler maintenant, etc.) */
+.contact .info-action {
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.contact .clickable-card:hover .info-action {
+    opacity: 1;
+    letter-spacing: 1px;
+}
+
+/* Responsive ajustements */
+@media (max-width: 768px) {
+    .contact .info-items {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .contact .info-item {
+        padding: 1.5rem;
+    }
 }
 
 .info-items {
@@ -1372,4 +1450,211 @@ body {
         width: 40px;
         height: 40px;
     }
+}
+/* ===================================
+   AVIS DÉFILANTS (TICKER)
+   =================================== */
+.reviews-ticker {
+    margin-top: var(--spacing-lg);
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: hidden;
+    padding: 20px 0;
+    background: rgba(0, 240, 255, 0.03);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ticker-wrapper {
+    display: flex;
+    width: max-content;
+}
+
+.ticker-group {
+    display: flex;
+    gap: 20px;
+    padding-right: 20px;
+    animation: ticker 100s linear infinite; 
+}
+/* Pause l'animation au survol */
+.reviews-ticker:hover .ticker-group {
+    animation-play-state: paused;
+}
+
+.review-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 350px;
+    backdrop-filter: blur(10px);
+    flex-shrink: 0;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+}
+
+.stars {
+    color: #ffcc00;
+    letter-spacing: 2px;
+}
+
+.review-card p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+@keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+    .review-card {
+        width: 280px;
+        padding: 1rem;
+    }
+    .ticker-group {
+        animation-duration: 80s; /* Un peu plus rapide sur petit écran */
+    }
+}
+.service-price-tag {
+    display: inline-block;
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    text-transform: uppercase;
+}
+
+.services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card-supplement-container {
+    margin: 15px 0;
+    border-top: 1px solid var(--border-color); /* Correction */
+    padding-top: 10px;
+}
+
+/* ===================================
+   BOUTONS DE SUPPLÉMENTS (STYLE PREMIUM)
+   =================================== */
+.card-supplement-container {
+    margin: 20px 0 10px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+.btn-toggle-supp {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--bg-dark);
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Effet de brillance au survol (identique au bouton contact) */
+.btn-toggle-supp::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-toggle-supp:hover::before {
+    left: 100%;
+}
+
+.btn-toggle-supp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 240, 255, 0.5);
+    filter: brightness(1.1);
+}
+
+/* Style pour l'icône à l'intérieur du bouton */
+.btn-toggle-supp i {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+/* Détails du contenu rétractable */
+.supp-details-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 8px 8px;
+    border: 1px solid transparent;
+}
+
+.supp-details-collapse.active {
+    max-height: 410px;
+    margin-top: 0; /* Pour "coller" au bouton si tu veux un effet bloc unique */
+    padding: 15px;
+    border-color: var(--border-color);
+    border-top: none;
+}
+
+.supp-list-mini {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.supp-list-mini li {
+    margin-bottom: 8px;
+    color: var(--text-gray);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 4px;
+}
+
+.supp-list-mini li:last-child {
+    border-bottom: none;
+}
+
+.supp-list-mini span {
+    color: var(--primary);
+    font-weight: bold;
+    display: block; /* Met la catégorie en évidence */
+    margin-bottom: 2px;
 }

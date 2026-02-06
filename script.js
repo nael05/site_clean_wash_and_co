@@ -479,3 +479,17 @@ window.addEventListener('load', () => {
 
 console.log('%c Clean Wash & Co ', 'background: linear-gradient(135deg, #00f0ff, #00b8cc); color: #050814; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 5px;');
 console.log('%c Site développé avec passion 🚀 ', 'color: #00f0ff; font-size: 14px;');
+
+function toggleCardSupp(button) {
+    // Trouve la section rétractable juste après le bouton
+    const content = button.nextElementSibling;
+    
+    // Alterne la classe active
+    content.classList.toggle('active');
+    
+    // Optionnel : faire tourner l'icône si vous en avez une
+    const icon = button.querySelector('i');
+    if (icon) {
+        icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+}

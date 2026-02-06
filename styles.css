@@ -508,9 +508,12 @@ body {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* CHANGE ICI : On met 340px fixe au lieu de minmax(..., 1fr) */
+    grid-template-columns: repeat(auto-fit, 340px);
     gap: var(--spacing-md);
     width: 100%;
+    /* Maintenant que les cartes ne s'étirent plus, ceci va marcher : */
+    justify-content: center; 
 }
 
 .service-card {
@@ -742,9 +745,12 @@ body {
 /* Grille des cartes de contact */
 .contact .info-items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Taille fixe de 280px pour garantir le centrage */
+    grid-template-columns: repeat(auto-fit, 280px);
     gap: 1.5rem;
-    margin-top: 3rem;
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    justify-content: center; /* Centre parfaitement les cartes */
 }
 
 /* Style de base des cartes */
@@ -837,10 +843,12 @@ body {
 }
 
 .info-items {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 280px) !important;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+    justify-content: center; 
 }
 
 .info-item {
@@ -1545,8 +1553,14 @@ body {
     text-transform: uppercase;
 }
 
-.services-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+.info-items {
+    display: grid;
+    /* On fixe la largeur à 280px pour éviter l'étirement automatique */
+    grid-template-columns: repeat(auto-fit, 280px) !important;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 4rem auto 0;
+    justify-content: center; /* Centre les cartes sur la ligne */
 }
 
 .card-supplement-container {

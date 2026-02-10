@@ -6,13 +6,31 @@ const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 const navLinkElements = document.querySelectorAll('.nav-link');
 
-// Sticky navbar on scroll
+// ===================================
+// NAVIGATION INTELLIGENTE (HIDE/SHOW)
+// ===================================
+let lastScrollTop = 0;
+
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
+
+    if (!navLinks.classList.contains('active')) {
+        
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
 // Mobile menu toggle

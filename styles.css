@@ -64,7 +64,7 @@ body {
 }
 
 /* ===================================
-   NAVIGATION
+   NAVIGATION (Refonte complète)
    =================================== */
 .navbar {
     position: fixed;
@@ -78,6 +78,16 @@ body {
     transition: var(--transition);
 }
 
+.navbar {
+    /* Tes styles existants... */
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.navbar.navbar-hidden {
+    transform: translateY(-100%); 
+    box-shadow: none; 
+}
+
 .navbar.scrolled {
     background: rgba(5, 8, 20, 0.95);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
@@ -85,90 +95,139 @@ body {
 
 .nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Sépare le Logo (gauche) du Burger (droite) */
     align-items: center;
-    padding: 1.2rem var(--spacing-md);
+    padding: 0.8rem var(--spacing-md);
+    height: 90px; /* Hauteur fixe pour éviter les sauts */
 }
 
-.logo {
+/* --- 1. GESTION DU LOGO ET DU TEXTE (Collés et Responsive) --- */
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    /* gap gère l'espace exact entre la photo et le texte. 
+       clamp rend cet espace dynamique (min 10px, max 15px) */
+    gap: clamp(10px, 2vw, 15px); 
+}
+
+.logo-image {
+    /* Taille adaptative : min 50px, idéal 12vw, max 70px */
+    width: clamp(50px, 12vw, 70px);
+    height: auto;
+    border-radius: 50%; /* Assure que l'image reste ronde si c'est le design voulu */
+    object-fit: contain;
+}
+
+.logo-text {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    /* Taille de police adaptative : min 1rem, idéal 3vw, max 1.5rem */
+    font-size: clamp(1rem, 3vw, 1.5rem);
     font-weight: 900;
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    z-index: 1001;
+    line-height: 1;
 }
 
-.logo-clean {
-    color: var(--text-light);
-}
-
-.logo-wash {
+.logo-clean { color: var(--text-light); }
+.logo-wash { 
     color: var(--primary);
     text-shadow: var(--shadow-glow);
 }
-
-.logo-co {
-    color: var(--text-light);
-    font-weight: 400;
+.logo-co { 
+    color: var(--text-light); 
+    font-weight: 400; 
 }
 
+/* --- 2. MENU BURGER (Visible sur TOUS les écrans) --- */
+
+.nav-toggle {
+    display: flex; /* Toujours visible maintenant */
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1002; /* Au-dessus du menu déroulant */
+}
+
+.nav-toggle span {
+    width: 30px;
+    height: 3px;
+    background: var(--primary);
+    transition: var(--transition);
+    border-radius: 3px;
+}
+
+/* --- 3. LIENS DE NAVIGATION (Cachés par défaut sur TOUS les écrans) --- */
+
 .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; /* Prend tout l'écran */
+    height: 100vh;
+    background: rgba(5, 8, 20, 0.98);
+    backdrop-filter: blur(20px);
     display: flex;
-    gap: var(--spacing-md);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    
+    /* Animation de rétractation */
+    transform: translateX(100%); /* Poussé hors de l'écran à droite */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1001;
+}
+
+/* Quand le menu est ouvert via JS */
+.nav-links.active {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
 }
 
 .nav-link {
-    color: var(--text-gray);
+    color: var(--text-light);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    position: relative;
-    transition: var(--transition);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Police très grosse pour le menu plein écran */
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    letter-spacing: 2px;
     transition: var(--transition);
+    position: relative;
 }
 
 .nav-link:hover,
 .nav-link.active {
     color: var(--primary);
+    transform: scale(1.1); /* Petit effet de zoom au survol */
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
+/* Petit trait décoratif sous les liens au survol */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
     width: 100%;
 }
-
-.nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1001;
-}
-
-.nav-toggle span {
-    width: 25px;
-    height: 2px;
-    background: var(--primary);
-    transition: var(--transition);
-}
-
 /* ===================================
    HERO SECTION
    =================================== */

@@ -1745,3 +1745,16 @@ body {
     display: block; /* Met la catégorie en évidence */
     margin-bottom: 2px;
 }
+
+.footer-socials {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-right: 60px; 
+}
+
+@media (max-width: 768px) {
+    .footer-socials {
+        margin-right: 50px;
+        justify-content: center; 
+    }
+}

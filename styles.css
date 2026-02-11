@@ -1254,6 +1254,10 @@ body {
     object-position: center bottom !important;
 }
 
+.focus-down img {
+    object-position: center !important;
+}
+
 .c-after .c-label {
     right: 10px;
     background: rgba(0, 240, 255, 0.7);

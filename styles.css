@@ -2,7 +2,6 @@
    VARIABLES & RESET
    =================================== */
 :root {
-    /* Colors - Futuristic Cyan/Blue Theme */
     --primary: #00f0ff;
     --primary-dark: #00b8cc;
     --primary-light: #5ff4ff;
@@ -14,23 +13,19 @@
     --text-light: #ffffff;
     --text-gray: #a0aec0;
     --border-color: rgba(0, 240, 255, 0.2);
-    
-    /* Typography */
+
     --font-display: 'Orbitron', sans-serif;
     --font-body: 'Exo 2', sans-serif;
     
-    /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
     
-    /* Shadows */
     --shadow-glow: 0 0 20px rgba(0, 240, 255, 0.3);
     --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
     
-    /* Transitions */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -79,7 +74,6 @@ body {
 }
 
 .navbar {
-    /* Tes styles existants... */
     transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
 }
 
@@ -95,34 +89,29 @@ body {
 
 .nav-container {
     display: flex;
-    justify-content: space-between; /* Sépare le Logo (gauche) du Burger (droite) */
+    justify-content: space-between;
     align-items: center;
     padding: 0.8rem var(--spacing-md);
-    height: 90px; /* Hauteur fixe pour éviter les sauts */
+    height: 90px;
 }
 
-/* --- 1. GESTION DU LOGO ET DU TEXTE (Collés et Responsive) --- */
 
 .navbar-brand {
     display: flex;
     align-items: center;
     text-decoration: none;
-    /* gap gère l'espace exact entre la photo et le texte. 
-       clamp rend cet espace dynamique (min 10px, max 15px) */
     gap: clamp(10px, 2vw, 15px); 
 }
 
 .logo-image {
-    /* Taille adaptative : min 50px, idéal 12vw, max 70px */
     width: clamp(50px, 12vw, 70px);
     height: auto;
-    border-radius: 50%; /* Assure que l'image reste ronde si c'est le design voulu */
+    border-radius: 50%;
     object-fit: contain;
 }
 
 .logo-text {
     font-family: var(--font-display);
-    /* Taille de police adaptative : min 1rem, idéal 3vw, max 1.5rem */
     font-size: clamp(1rem, 3vw, 1.5rem);
     font-weight: 900;
     display: flex;
@@ -141,17 +130,16 @@ body {
     font-weight: 400; 
 }
 
-/* --- 2. MENU BURGER (Visible sur TOUS les écrans) --- */
 
 .nav-toggle {
-    display: flex; /* Toujours visible maintenant */
+    display: flex; 
     flex-direction: column;
     gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 1002; /* Au-dessus du menu déroulant */
+    z-index: 1002;
 }
 
 .nav-toggle span {
@@ -162,14 +150,13 @@ body {
     border-radius: 3px;
 }
 
-/* --- 3. LIENS DE NAVIGATION (Cachés par défaut sur TOUS les écrans) --- */
 
 .nav-links {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
-    left: 0; /* Prend tout l'écran */
+    left: 0;
     height: 100vh;
     background: rgba(5, 8, 20, 0.98);
     backdrop-filter: blur(20px);
@@ -179,15 +166,13 @@ body {
     align-items: center;
     gap: 2.5rem;
     
-    /* Animation de rétractation */
-    transform: translateX(100%); /* Poussé hors de l'écran à droite */
+    transform: translateX(100%); 
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     z-index: 1001;
 }
 
-/* Quand le menu est ouvert via JS */
 .nav-links.active {
     transform: translateX(0);
     opacity: 1;
@@ -199,7 +184,7 @@ body {
     text-decoration: none;
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Police très grosse pour le menu plein écran */
+    font-size: clamp(1.5rem, 4vw, 2.5rem); 
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: var(--transition);
@@ -209,10 +194,9 @@ body {
 .nav-link:hover,
 .nav-link.active {
     color: var(--primary);
-    transform: scale(1.1); /* Petit effet de zoom au survol */
+    transform: scale(1.1); 
 }
 
-/* Petit trait décoratif sous les liens au survol */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -330,7 +314,6 @@ body {
     line-height: 1.1;
     margin-bottom: var(--spacing-md);
     text-transform: uppercase;
-    /* Suppression des tirets et césures */
     white-space: normal;
 }
 
@@ -567,11 +550,9 @@ body {
 
 .services-grid {
     display: grid;
-    /* CHANGE ICI : On met 340px fixe au lieu de minmax(..., 1fr) */
     grid-template-columns: repeat(auto-fit, 340px);
     gap: var(--spacing-md);
     width: 100%;
-    /* Maintenant que les cartes ne s'étirent plus, ceci va marcher : */
     justify-content: center; 
 }
 
@@ -801,18 +782,15 @@ body {
     position: relative;
 }
 
-/* Grille des cartes de contact */
 .contact .info-items {
     display: grid;
-    /* Taille fixe de 280px pour garantir le centrage */
     grid-template-columns: repeat(auto-fit, 280px);
     gap: 1.5rem;
     max-width: 1200px;
     margin: 3rem auto 0;
-    justify-content: center; /* Centre parfaitement les cartes */
+    justify-content: center; 
 }
 
-/* Style de base des cartes */
 .contact .info-item {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -824,11 +802,10 @@ body {
     text-align: center;
     transition: var(--transition);
     backdrop-filter: blur(10px);
-    text-decoration: none; /* Pour les cartes cliquables <a> */
+    text-decoration: none;
     color: inherit;
 }
 
-/* Effet au survol des cartes cliquables */
 .contact .clickable-card:hover {
     transform: translateY(-10px);
     border-color: var(--primary);
@@ -836,7 +813,6 @@ body {
     box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15), var(--shadow-glow);
 }
 
-/* Icônes */
 .contact .info-icon {
     width: 60px;
     height: 60px;
@@ -855,7 +831,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Textes à l'intérieur des cartes */
 .contact .info-label {
     font-family: var(--font-display);
     font-size: 0.75rem;
@@ -872,7 +847,6 @@ body {
     margin-bottom: 0.5rem;
 }
 
-/* Texte d'action (Appeler maintenant, etc.) */
 .contact .info-action {
     font-size: 0.85rem;
     color: var(--primary);
@@ -890,7 +864,7 @@ body {
 /* Responsive ajustements */
 @media (max-width: 768px) {
     .contact .info-items {
-        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+        grid-template-columns: 1fr;
         max-width: 400px;
         margin-left: auto;
         margin-right: auto;
@@ -1186,7 +1160,7 @@ body {
 .comparison-slider {
     position: relative;
     width: 100%;
-    height: 340px; /* Augmenté de 250px à 400px */
+    height: 340px; 
     overflow: hidden;
     border-radius: 12px;
     cursor: ew-resize;
@@ -1461,9 +1435,6 @@ body {
         padding: 0 1rem;
     }
     
-    /* SOLUTION : La taille de police est fluide. 
-       10.5vw signifie "10.5% de la largeur de l'écran".
-       Cela garantit que le mot rentre TOUJOURS. */
     .hero-title {
         font-size: 10.5vw;
         line-height: 1.1;
@@ -1533,7 +1504,7 @@ body {
     }
 }
 /* ===================================
-   AVIS DÉFILANTS (TICKER)
+   AVIS DÉFILANTS 
    =================================== */
 .reviews-ticker {
     margin-top: var(--spacing-lg);
@@ -1609,7 +1580,7 @@ body {
         padding: 1rem;
     }
     .ticker-group {
-        animation-duration: 80s; /* Un peu plus rapide sur petit écran */
+        animation-duration: 80s;
     }
 }
 .service-price-tag {
@@ -1628,22 +1599,21 @@ body {
 
 .info-items {
     display: grid;
-    /* On fixe la largeur à 280px pour éviter l'étirement automatique */
     grid-template-columns: repeat(auto-fit, 280px) !important;
     gap: 1.5rem;
     max-width: 1200px;
     margin: 4rem auto 0;
-    justify-content: center; /* Centre les cartes sur la ligne */
+    justify-content: center;
 }
 
 .card-supplement-container {
     margin: 15px 0;
-    border-top: 1px solid var(--border-color); /* Correction */
+    border-top: 1px solid var(--border-color);
     padding-top: 10px;
 }
 
 /* ===================================
-   BOUTONS DE SUPPLÉMENTS (STYLE PREMIUM)
+   BOUTONS DE SUPPLÉMENTS
    =================================== */
 .card-supplement-container {
     margin: 20px 0 10px;
@@ -1714,7 +1684,7 @@ body {
 
 .supp-details-collapse.active {
     max-height: 410px;
-    margin-top: 0; /* Pour "coller" au bouton si tu veux un effet bloc unique */
+    margin-top: 0;
     padding: 15px;
     border-color: var(--border-color);
     border-top: none;
@@ -1742,7 +1712,7 @@ body {
 .supp-list-mini span {
     color: var(--primary);
     font-weight: bold;
-    display: block; /* Met la catégorie en évidence */
+    display: block; 
     margin-bottom: 2px;
 }
 
@@ -1833,11 +1803,11 @@ body {
     padding: 150px 0 80px;
     position: relative;
     min-height: 100vh;
-    background: var(--bg-dark); /* Utilise votre couleur de fond */
+    background: var(--bg-dark); 
 }
 
 .legal-page .legal-card {
-    background: var(--bg-card); /* Utilise votre effet carte */
+    background: var(--bg-card); 
     border: 1px solid var(--border-color);
     border-radius: 20px;
     padding: 3rem;
@@ -1849,7 +1819,7 @@ body {
 
 .legal-page .legal-card h2 {
     font-family: var(--font-display);
-    color: var(--primary); /* Utilise votre bleu cyan */
+    color: var(--primary); 
     font-size: 1.4rem;
     margin: 2.5rem 0 1rem;
     text-transform: uppercase;

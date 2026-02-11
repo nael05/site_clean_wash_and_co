@@ -251,94 +251,6 @@ sliders.forEach(slider => {
 });
 
 // ===================================
-// FORM HANDLING
-// ===================================
-const contactForm = document.getElementById('contactForm');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        service: document.getElementById('service').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Simulate form submission
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.innerHTML;
-    
-    submitButton.innerHTML = '<span>Envoi en cours...</span>';
-    submitButton.disabled = true;
-    
-    // Simulate API call
-    setTimeout(() => {
-        // Success message
-        submitButton.innerHTML = '<span>Message envoyé ! ✓</span>';
-        submitButton.style.background = 'linear-gradient(135deg, #00ff88, #00cc66)';
-        
-        // Reset form
-        contactForm.reset();
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-            submitButton.innerHTML = originalButtonText;
-            submitButton.style.background = '';
-            submitButton.disabled = false;
-        }, 3000);
-        
-        console.log('Form submitted:', formData);
-    }, 1500);
-});
-
-// Form validation
-const inputs = contactForm.querySelectorAll('input, select, textarea');
-
-inputs.forEach(input => {
-    input.addEventListener('blur', () => {
-        validateField(input);
-    });
-    
-    input.addEventListener('input', () => {
-        if (input.classList.contains('error')) {
-            validateField(input);
-        }
-    });
-});
-
-function validateField(field) {
-    const value = field.value.trim();
-    let isValid = true;
-    
-    if (field.hasAttribute('required') && !value) {
-        isValid = false;
-    }
-    
-    if (field.type === 'email' && value) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        isValid = emailRegex.test(value);
-    }
-    
-    if (field.type === 'tel' && value) {
-        const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-        isValid = phoneRegex.test(value) && value.length >= 10;
-    }
-    
-    if (isValid) {
-        field.style.borderColor = 'var(--border-color)';
-        field.classList.remove('error');
-    } else {
-        field.style.borderColor = 'var(--accent)';
-        field.classList.add('error');
-    }
-    
-    return isValid;
-}
-
-// ===================================
 // SMOOTH SCROLL
 // ===================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -347,7 +259,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         
         if (target) {
-            const offsetTop = target.offsetTop - 80; // Account for navbar height
+            const offsetTop = target.offsetTop - 80;
             
             window.scrollTo({
                 top: offsetTop,
@@ -436,15 +348,12 @@ if (window.innerWidth > 768) {
         });
     });
     
-    // Smooth cursor animation
     function animateCursor() {
-        // Cursor follows with delay
         cursorX += (mouseX - cursorX) * 0.2;
         cursorY += (mouseY - cursorY) * 0.2;
         cursor.style.left = cursorX + 'px';
         cursor.style.top = cursorY + 'px';
         
-        // Dot follows with less delay
         dotX += (mouseX - dotX) * 0.4;
         dotY += (mouseY - dotY) * 0.4;
         cursorDot.style.left = dotX + 'px';
@@ -459,7 +368,6 @@ if (window.innerWidth > 768) {
 // ===================================
 // PERFORMANCE OPTIMIZATION
 // ===================================
-// Lazy load images if any are added later
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -490,7 +398,6 @@ window.addEventListener('load', () => {
         }, 300);
     }
     
-    // Trigger initial animations
     updateActiveLink();
     animateCounters();
 });
@@ -499,13 +406,10 @@ console.log('%c Clean Wash & Co ', 'background: linear-gradient(135deg, #00f0ff,
 console.log('%c Site développé avec passion 🚀 ', 'color: #00f0ff; font-size: 14px;');
 
 function toggleCardSupp(button) {
-    // Trouve la section rétractable juste après le bouton
     const content = button.nextElementSibling;
     
-    // Alterne la classe active
     content.classList.toggle('active');
     
-    // Optionnel : faire tourner l'icône si vous en avez une
     const icon = button.querySelector('i');
     if (icon) {
         icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';

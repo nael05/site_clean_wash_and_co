@@ -1508,7 +1508,7 @@ body {
    =================================== */
 .reviews-ticker {
     margin-top: var(--spacing-lg);
-    width: 100vw;
+    width: 100%;
     position: relative;
     left: 50%;
     right: 50%;

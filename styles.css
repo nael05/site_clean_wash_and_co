@@ -1758,3 +1758,112 @@ body {
         justify-content: center; 
     }
 }
+
+/* --- PAGE MENTIONS LÉGALES --- */
+.legal-main {
+    padding: 150px 0 80px;
+    position: relative;
+    min-height: 100vh;
+    background: var(--bg-dark);
+}
+
+.legal-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 3rem;
+    backdrop-filter: blur(20px);
+    margin-top: 30px;
+}
+
+.legal-card h2 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    font-size: 1.4rem;
+    margin: 2.5rem 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+    padding-bottom: 8px;
+}
+
+.legal-card h2:first-child {
+    margin-top: 0;
+}
+
+.legal-card p, 
+.legal-card ul li {
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 0.8rem;
+    font-family: var(--font-body);
+}
+
+.legal-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.legal-card ul li {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.legal-card ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.legal-card strong {
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .legal-card {
+        padding: 1.5rem;
+    }
+}
+
+/* --- STYLE SPECIFIQUE MENTIONS LEGALES --- */
+.legal-page .legal-main {
+    padding: 150px 0 80px;
+    position: relative;
+    min-height: 100vh;
+    background: var(--bg-dark); /* Utilise votre couleur de fond */
+}
+
+.legal-page .legal-card {
+    background: var(--bg-card); /* Utilise votre effet carte */
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 3rem;
+    backdrop-filter: blur(20px);
+    margin-top: 30px;
+    position: relative;
+    z-index: 5;
+}
+
+.legal-page .legal-card h2 {
+    font-family: var(--font-display);
+    color: var(--primary); /* Utilise votre bleu cyan */
+    font-size: 1.4rem;
+    margin: 2.5rem 0 1rem;
+    text-transform: uppercase;
+}
+
+.legal-page .legal-card p, 
+.legal-page .legal-card li {
+    color: var(--text-gray);
+    line-height: 1.8;
+}
+
+.legal-page .legal-card ul { list-style: none; padding: 0; }
+.legal-page .legal-card ul li::before {
+    content: '→';
+    color: var(--primary);
+    margin-right: 10px;
+}

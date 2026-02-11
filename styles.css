@@ -1186,7 +1186,7 @@ body {
 .comparison-slider {
     position: relative;
     width: 100%;
-    height: 250px;
+    height: 340px; /* Augmenté de 250px à 400px */
     overflow: hidden;
     border-radius: 12px;
     cursor: ew-resize;
@@ -1203,13 +1203,12 @@ body {
 
 .c-image img {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 100%; 
+    height: 350px; 
     object-fit: cover;
     pointer-events: none;
     user-select: none;
 }
-
 .c-before {
     width: 50%;
     z-index: 2;
@@ -1217,9 +1216,12 @@ body {
 }
 
 .c-before img {
-    filter: grayscale(100%) contrast(120%) brightness(80%) sepia(30%);
-    width: 200%;
+    filter: grayscale(20%) contrast(100%) brightness(70%) sepia(30%);
+    width: 100% !important; 
     max-width: none;
+    height: 350px;
+    object-fit: cover;
+    object-position: bottom right;
 }
 
 .c-after {
@@ -1242,6 +1244,14 @@ body {
 .c-before .c-label {
     left: 10px;
     background: rgba(255, 0, 110, 0.7);
+}
+
+.focus-left img {
+    object-position: left center !important;
+}
+
+.focus-down img {
+    object-position: center bottom !important;
 }
 
 .c-after .c-label {

@@ -1839,21 +1839,23 @@ body {
 }
 
 /* ===================================
-   CARTE SERVICE : BOUTON PLUS D'INFO (Design Premium)
+   CARTE SERVICE : BOUTON PLUS D'INFO (100% Responsive)
    =================================== */
 .btn-more-info {
     background: rgba(10, 14, 39, 0.6);
     color: var(--primary);
     width: 100%;
-    padding: 1.2rem;
-    font-size: 0.9rem;
+    /* Padding flexible */
+    padding: 1.2rem 1rem;
+    /* Taille de police qui s'adapte dynamiquement à l'écran */
+    font-size: clamp(0.85rem, 3vw, 0.95rem);
     font-family: var(--font-display);
     font-weight: 700;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     border: none;
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid transparent;
@@ -1863,9 +1865,14 @@ body {
     position: relative;
     overflow: hidden;
     z-index: 2;
+    box-sizing: border-box;
+    /* Optimisations tactiles (Mobile) */
+    user-select: none; 
+    -webkit-tap-highlight-color: transparent; 
+    touch-action: manipulation;
 }
 
-/* Effet de reflet métallique qui traverse le bouton */
+/* Reflet métallique de base */
 .btn-more-info::after {
     content: '';
     position: absolute;
@@ -1878,32 +1885,42 @@ body {
     z-index: 1;
 }
 
-.btn-more-info:hover::after {
-    left: 100%;
+/* * Le survol (hover) s'applique UNIQUEMENT sur les appareils avec une vraie souris.
+ * Cela évite le bug du bouton qui reste allumé sur mobile après avoir appuyé.
+ */
+@media (hover: hover) {
+    .btn-more-info:hover::after {
+        left: 100%;
+    }
+    
+    .btn-more-info:hover {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: var(--bg-dark);
+        border-top-color: transparent;
+        box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
+    }
 }
 
-/* Changement de couleur au survol et quand c'est ouvert */
-.btn-more-info:hover, .btn-more-info.active {
+/* État actif (quand le menu est ouvert) : valable sur PC et Mobile */
+.btn-more-info.active {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: var(--bg-dark);
     border-top-color: transparent;
     box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
 }
 
-/* Style et animation de l'icône */
+.btn-more-info span,
+.btn-more-info i {
+    position: relative;
+    z-index: 2;
+}
+
+/* Style de l'icône et animations */
 .btn-more-info i {
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 1.1rem;
-    position: relative;
-    z-index: 2;
+    font-size: 1.1em;
 }
 
-.btn-more-info span {
-    position: relative;
-    z-index: 2;
-}
-
-/* Petit rebond de la flèche pour inciter au clic */
 @keyframes bounce-arrow {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(4px); }
@@ -1913,13 +1930,12 @@ body {
     animation: bounce-arrow 2s infinite ease-in-out;
 }
 
-/* Rotation fluide quand la carte est ouverte */
 .btn-more-info.active i {
     transform: rotate(180deg);
     animation: none;
 }
 
-/* Animation fluide du contenu */
+/* Contenu déroulant */
 .service-info-collapse {
     max-height: 0;
     overflow: hidden;
@@ -1934,4 +1950,12 @@ body {
     opacity: 1;
     padding-top: var(--spacing-md) !important;
     padding-bottom: var(--spacing-md) !important;
+}
+
+/* Ajustements pour les très petits écrans (ex: iPhone SE) */
+@media (max-width: 480px) {
+    .btn-more-info {
+        padding: 1rem 0.5rem;
+        letter-spacing: 1px;
+    }
 }

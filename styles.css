@@ -1936,6 +1936,7 @@ body {
 }
 
 /* Contenu déroulant */
+/* Contenu déroulant */
 .service-info-collapse {
     max-height: 0;
     overflow: hidden;
@@ -1943,6 +1944,11 @@ body {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Correctif Mobile & Safari iOS */
+    flex: none !important;
+    min-height: 0 !important;
+    visibility: hidden;
 }
 
 .service-info-collapse.active {
@@ -1950,6 +1956,10 @@ body {
     opacity: 1;
     padding-top: var(--spacing-md) !important;
     padding-bottom: var(--spacing-md) !important;
+    
+    /* On réactive le comportement flex à l'ouverture */
+    flex: 1 !important;
+    visibility: visible;
 }
 
 /* Ajustements pour les très petits écrans (ex: iPhone SE) */

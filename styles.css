@@ -1837,3 +1837,101 @@ body {
     color: var(--primary);
     margin-right: 10px;
 }
+
+/* ===================================
+   CARTE SERVICE : BOUTON PLUS D'INFO (Design Premium)
+   =================================== */
+.btn-more-info {
+    background: rgba(10, 14, 39, 0.6);
+    color: var(--primary);
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 0.9rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border: none;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* Effet de reflet métallique qui traverse le bouton */
+.btn-more-info::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s ease;
+    z-index: 1;
+}
+
+.btn-more-info:hover::after {
+    left: 100%;
+}
+
+/* Changement de couleur au survol et quand c'est ouvert */
+.btn-more-info:hover, .btn-more-info.active {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--bg-dark);
+    border-top-color: transparent;
+    box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
+}
+
+/* Style et animation de l'icône */
+.btn-more-info i {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-more-info span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Petit rebond de la flèche pour inciter au clic */
+@keyframes bounce-arrow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+}
+
+.btn-more-info:not(.active) i {
+    animation: bounce-arrow 2s infinite ease-in-out;
+}
+
+/* Rotation fluide quand la carte est ouverte */
+.btn-more-info.active i {
+    transform: rotate(180deg);
+    animation: none;
+}
+
+/* Animation fluide du contenu */
+.service-info-collapse {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-info-collapse.active {
+    max-height: 2500px;
+    opacity: 1;
+    padding-top: var(--spacing-md) !important;
+    padding-bottom: var(--spacing-md) !important;
+}

@@ -415,3 +415,23 @@ function toggleCardSupp(button) {
         icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
     }
 }
+
+// ===================================
+// DÉROULER LES CARTES SERVICES
+// ===================================
+function toggleServiceInfo(button) {
+    const content = button.nextElementSibling;
+    content.classList.toggle('active');
+    button.classList.toggle('active');
+    
+    const textSpan = button.querySelector('span');
+    const icon = button.querySelector('i');
+    
+    if (content.classList.contains('active')) {
+        textSpan.textContent = "Moins d'infos";
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        textSpan.textContent = "Plus d'infos";
+        icon.style.transform = 'rotate(0deg)';
+    }
+}

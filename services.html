@@ -49,14 +49,20 @@
         </div>
     </nav>
 
-
-
-    <main style="position: relative; min-height: 100vh; overflow: hidden;">
-        <div class="hero-background">
-            <div class="grid-overlay"></div>
-            <div class="gradient-sphere sphere-1"></div>
-            <div class="gradient-sphere sphere-2"></div>
+    <div class="category-nav">
+        <div class="main-categories">
+            <button class="cat-btn active" onclick="filterServices('auto')">Automobile</button>
+            <button class="cat-btn" onclick="filterServices('domicile')">Mobilier</button>
         </div>
+        
+        <div class="price-toggle-wrapper">
+            <label class="switch">
+                <input type="checkbox" id="price-toggle" onchange="togglePrices()">
+                <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Tarifs</span>
+        </div>
+    </div>
 
         <section class="section" id="auto" style="padding-top: 150px; position: relative; z-index: 10;">
             <div class="container">

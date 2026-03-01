@@ -2132,3 +2132,46 @@ body {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* --- Mise en page Ordinateur (Desktop) --- */
+.category-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.main-categories {
+    display: flex;
+    gap: 15px;
+}
+
+.price-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* --- Mise en page Téléphone (Mobile) --- */
+@media (max-width: 768px) {
+    .category-nav {
+        flex-direction: column; /* Empile les groupes verticalement */
+        gap: 20px;
+    }
+
+    .main-categories {
+        width: 100%;
+        justify-content: center; /* Centre Automobile et Mobilier */
+    }
+
+    .price-toggle-wrapper {
+        width: 100%;
+        justify-content: center; /* Centre le switch Tarifs en dessous */
+        padding: 10px;
+        background: rgba(0, 240, 255, 0.05); /* Intègre visuellement le tarif au curseur */
+        border-radius: 30px;
+        border: 1px solid var(--border-color);
+    }
+}

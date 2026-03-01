@@ -2086,16 +2086,32 @@ body {
 }
 
 /* ===================================
-   SÉLECTEUR DE CATÉGORIES (CURSEUR)
+   SÉLECTEUR DE CATÉGORIES (TRIANGLE INVERSÉ)
    =================================== */
-.category-selector {
-    display: inline-flex;
+.category-selector-triangle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Espace vertical entre la ligne du haut et celle du bas */
+    margin: 0 auto;
+}
+
+.cat-row-top {
+    display: flex;
+    gap: 10px; /* Espace horizontal entre Automobile et Mobilier */
     background: rgba(10, 14, 39, 0.8);
     border: 1px solid var(--border-color);
     border-radius: 50px;
     padding: 5px;
-    margin: 0 auto;
-    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cat-row-bottom {
+    display: flex;
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 5px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 

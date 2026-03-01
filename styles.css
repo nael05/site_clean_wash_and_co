@@ -2084,3 +2084,51 @@ body {
 .pricing-list li.highlight .price {
     color: var(--primary);
 }
+
+/* ===================================
+   SÉLECTEUR DE CATÉGORIES (CURSEUR)
+   =================================== */
+.category-selector {
+    display: inline-flex;
+    background: rgba(10, 14, 39, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 5px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cat-btn {
+    background: transparent;
+    color: var(--text-gray);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 40px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cat-btn.active {
+    color: var(--bg-dark);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+}
+
+.cat-btn:not(.active):hover {
+    color: var(--primary);
+}
+
+/* Animation d'apparition fluide */
+.category-fade {
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

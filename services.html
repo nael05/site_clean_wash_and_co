@@ -49,6 +49,8 @@
         </div>
     </nav>
 
+
+
     <main style="position: relative; min-height: 100vh; overflow: hidden;">
         <div class="hero-background">
             <div class="grid-overlay"></div>
@@ -58,10 +60,19 @@
 
         <section class="section" id="auto" style="padding-top: 150px; position: relative; z-index: 10;">
             <div class="container">
-                <div class="section-header" style="margin-bottom: 3rem;">
-                    <span class="section-tag" data-aos="fade-down">EN CENTRE OU À DOMICILE</span>
-                    <h1 class="section-title" data-aos="fade-up" style="text-align: center;">Nettoyage Automobile</h1>
-                    <h3 class="section-subtitle" data-aos="fade-up" data-aos-delay="100" style="text-align: center; color: var(--text-gray);">Découvrez nos formules adaptées à vos besoins dans notre centre à Jouy-le-Moutier (95)</h3>
+                <div class="section-header" style="margin-bottom: 3rem; text-align: center;">
+                    <span class="section-tag" data-aos="fade-down">NOS PRESTATIONS</span>
+                    <h1 class="section-title" data-aos="fade-up">Que souhaitez-vous nettoyer ?</h1>
+                    
+                    <div class="category-selector" data-aos="fade-up" data-aos-delay="100">
+                        <button class="cat-btn active" onclick="filterCategory('auto')">Automobile</button>
+                        <button class="cat-btn" onclick="filterCategory('domicile')">Mobilier</button>
+                        <button class="cat-btn" onclick="filterCategory('tarif')">Tarifs</button>
+                    </div>
+
+                    <h3 id="subtitle-auto" class="section-subtitle category-fade" style="color: var(--text-gray); margin-top: 2rem;">Découvrez nos formules adaptées à vos besoins dans notre centre à Jouy-le-Moutier (95)</h3>
+                    <h3 id="subtitle-domicile" class="section-subtitle category-fade" style="color: var(--text-gray); margin-top: 2rem; display: none;">Nous redonnons vie à votre intérieur (Canapé, Matelas, Tapis) dans toute l'Île-de-France</h3>
+                    <h3 id="subtitle-tarif" class="section-subtitle category-fade" style="color: var(--text-gray); margin-top: 2rem; display: none;">Découvrez nos forfaits et abonnements avantageux</h3>
                 </div>
                 
                 <div class="services-grid">
@@ -325,9 +336,8 @@
             </div>
         </section>
 
-        <div class="container">
-            <hr style="border: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--primary), transparent); margin: 2rem auto 4rem auto; opacity: 0.3;">
-        </div>
+        <section class="section category-fade" id="domicile" style="padding-bottom: 4rem; position: relative; z-index: 10; display: none;">
+            <div class="container">
 
         <section class="section" id="domicile" style="padding-bottom: 4rem; position: relative; z-index: 10;">
             <div class="container">
@@ -457,6 +467,50 @@
                     </div>
 
                 </div>
+            </div>
+        </section>
+
+        <section class="section category-fade" id="tarif" style="padding-bottom: 4rem; position: relative; z-index: 10; display: none;">
+            <div class="container">
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="150">
+                        <div class="pricing-card-header">
+                            <div class="pricing-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 16H9m10 0h3v-3.15a1 1 0 00-.84-.99L16 11l-2.7-3.6a2 2 0 00-1.6-.8H9.3a2 2 0 00-1.6.8L5 11l-5.16.86a1 1 0 00-.84.99V16h3m12 0a2 2 0 11-4 0 2 2 0 014 0zM9 16a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                            </div>
+                            <h3>Automobile</h3>
+                            <p>En centre (Jouy-le-Moutier)</p>
+                        </div>
+                        <ul class="pricing-list">
+                            <li><span>Nettoyage Express</span> <span class="price">Dès 5€</span></li>
+                            <li><span>Nettoyage Extérieur</span> <span class="price">20€</span></li>
+                            <li><span>Intérieur Simple</span> <span class="price">30€</span></li>
+                            <li><span>Intérieur Complet (Shampouinage)</span> <span class="price">40€</span></li>
+                            <li class="highlight"><span>Intérieur + Extérieur</span> <span class="price">60€</span></li>
+                        </ul>
+                        <a href="#" onclick="filterCategory('auto'); return false;" class="btn btn-secondary btn-full" style="margin-top: 1.5rem;">Découvrir les prestations</a>
+                    </div>
+
+                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="250">
+                        <div class="pricing-card-header">
+                            <div class="pricing-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V7a2 2 0 00-2-2H6a2 2 0 00-2 2v2M4 13h16a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2a2 2 0 012-2zM4 13v-4M20 13v-4M8 19v2M16 19v2"/></svg>
+                            </div>
+                            <h3>Nettoyage tapis, canapé, matelas</h3>
+                            <p>Partout en Île-de-France</p>
+                        </div>
+                        <ul class="pricing-list">
+                            <li><span>Canapé (1 place)</span> <span class="price">20€</span></li>
+                            <li><span>Canapé (3 places)</span> <span class="price">50€</span></li>
+                            <li><span>Tapis</span> <span class="price">Dès 30€</span></li>
+                            <li><span>Matelas (140x190)</span> <span class="price">40€</span></li>
+                            <li class="highlight"><span>Matelas (160x200)</span> <span class="price">50€</span></li>
+                        </ul>
+                        <a href="#" onclick="filterCategory('domicile'); return false;" class="btn btn-secondary btn-full" style="margin-top: 1.5rem;">Découvrir les prestations</a>
+                    </div>
+                </div>
+
             </div>
         </section>
 

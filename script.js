@@ -435,3 +435,49 @@ function toggleServiceInfo(button) {
         icon.style.transform = 'rotate(0deg)';
     }
 }
+
+// ===================================
+// TRI DES SERVICES (AUTO / MOBILIER / TARIF)
+// ===================================
+function filterCategory(category) {
+    // 1. Gérer l'apparence des 3 boutons
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.remove('active');
+        const btnText = btn.innerText.toLowerCase();
+        if(category === 'auto' && btnText.includes('auto')) btn.classList.add('active');
+        if(category === 'domicile' && btnText.includes('mobilier')) btn.classList.add('active');
+        if(category === 'tarif' && btnText.includes('tarif')) btn.classList.add('active');
+    });
+
+    // 2. Cibler les éléments
+    const gridAuto = document.querySelector('#auto .services-grid'); 
+    const sectionDomicile = document.getElementById('domicile');     
+    const sectionTarif = document.getElementById('tarif');     
+    
+    const subtitleAuto = document.getElementById('subtitle-auto');
+    const subtitleDomicile = document.getElementById('subtitle-domicile');
+    const subtitleTarif = document.getElementById('subtitle-tarif');
+
+    // 3. Masquer tout le monde pour réinitialiser
+    if(gridAuto) { gridAuto.style.display = 'none'; gridAuto.classList.remove('category-fade'); }
+    if(sectionDomicile) { sectionDomicile.style.display = 'none'; sectionDomicile.classList.remove('category-fade'); }
+    if(sectionTarif) { sectionTarif.style.display = 'none'; sectionTarif.classList.remove('category-fade'); }
+    
+    if(subtitleAuto) subtitleAuto.style.display = 'none';
+    if(subtitleDomicile) subtitleDomicile.style.display = 'none';
+    if(subtitleTarif) subtitleTarif.style.display = 'none';
+
+    // 4. Afficher la bonne catégorie (avec un mini délai pour relancer l'animation CSS)
+    setTimeout(() => {
+        if (category === 'auto') {
+            if(gridAuto) { gridAuto.style.display = 'grid'; gridAuto.classList.add('category-fade'); }
+            if(subtitleAuto) subtitleAuto.style.display = 'block';
+        } else if (category === 'domicile') {
+            if(sectionDomicile) { sectionDomicile.style.display = 'block'; sectionDomicile.classList.add('category-fade'); }
+            if(subtitleDomicile) subtitleDomicile.style.display = 'block';
+        } else if (category === 'tarif') {
+            if(sectionTarif) { sectionTarif.style.display = 'block'; sectionTarif.classList.add('category-fade'); }
+            if(subtitleTarif) subtitleTarif.style.display = 'block';
+        }
+    }, 10);
+}

@@ -36,7 +36,7 @@
 
             <div class="nav-links" id="navLinks">
                 <a href="index.html" class="nav-link">Accueil</a>
-                <a href="services.html" class="nav-link active">Services</a>
+                <a href="services.html" class="nav-link active">Services et tarifs</a>
                 <a href="processus.html" class="nav-link">Notre Processus</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
@@ -101,16 +101,19 @@
                             <span>Plus d'infos</span> <i class="fas fa-chevron-down"></i>
                         </button>
                         <div class="service-text service-info-collapse">
-                            <div class="service-price-tag">10 à 30 MIN | Dès 5€</div>
+                            <div class="service-price-tag">15 à 45 MIN | Dès 5€</div>
                             <h3 class="service-title">Nettoyage Express</h3>
                             <p class="service-description">Des prestations rapides et ciblées pour un entretien efficace au quotidien.</p>
                             <ul class="service-features">
-                                <li>Aspirateur habitacle (5€)</li>
-                                <li>Aspirateur habitacle + coffre (7€)</li>
-                                <li>Rénovation 4 panneaux de portes + tableau de bord (10€)</li>
-                                <li>Aspirateur habitacle + coffre + dépoussièrage et rénovation plastique(20€)</li>
-                                <li>Shampouinage sièges (5€/siège ou 25€ les 5)</li>
-                                <li>Shampouinage plafonnier (25€)</li>
+                                <li>Aspirateur habitacle : 5€</li>
+                                <li>Aspirateur habitacle + coffre : 7€</li>
+                                <li>Nettoyage plastique + rénovation 4 panneaux de portes + tableau de bord : 15€</li>
+                                <li>Aspirateur habitacle + coffre : 18€</li>
+                                <li>Aspirateur habitacle + coffre + nettoyage et rénovation plastique : 23€</li>
+                                <li>Ntettoyage 4 contours de porte : 10€</li>
+                                <li>Ntettoyage 4 contours de porte + contour de coffre : 15€</li>
+                                <li>Shampouinage sièges : 5€/siège</li>
+                                <li>Shampouinage plafonnier : 25€</li>
                             </ul>
                             <div class="card-supplement-container">
                                 <button class="btn-toggle-supp" onclick="toggleCardSupp(this)">
@@ -332,20 +335,50 @@
                         </div>
                     </div>
 
+                    <div class="service-card" data-aos="fade-up">
+                        <div class="comparison-slider">
+                            <div class="c-image c-after focus-left">
+                                <img src="pictures/exterieur_apres.webp" alt="capot voiture après Nettoyage Extérieur" >
+                                <span class="c-label">APRÈS</span>
+                            </div>
+                            <div class="c-image c-before focus-left focus-down">
+                                <img src="pictures/exterieur_avant.webp" style="filter: brightness(0.9);" alt="capot coiture avant Nettoyage Extérieur">
+                                <span class="c-label">AVANT</span>
+                            </div>
+                            <div class="c-handle">
+                                <div class="c-line"></div>
+                                <div class="c-circle">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="7 8 3 12 7 16"></polyline>
+                                        <polyline points="17 8 21 12 17 16"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn-more-info" onclick="toggleServiceInfo(this)">
+                            <span>Plus d'infos</span> <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="service-text service-info-collapse">
+                            <div class="service-price-tag">30 MIN | 30-50€</div>
+                            <h3 class="service-title">Rénovation phares</h3>
+                            <p class="service-description">Redonnez à vos phares toute leur clarté pour une conduite plus sûre et un véhicule comme neuf.</p>
+                            <ul class="service-features">
+                                <li>Poncage minicieux</li>
+                                <li>Lustrage et nettoyage du phare</li>
+                                <li>Application d'un vernis protecteur</li>
+                                <li>1 phares : 30€</li>
+                                <li>2 phares : 50€</li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
         <section class="section category-fade" id="domicile" style="padding-bottom: 4rem; position: relative; z-index: 10; display: none;">
             <div class="container">
-
-        <section class="section" id="domicile" style="padding-bottom: 4rem; position: relative; z-index: 10;">
-            <div class="container">
-                <div class="section-header" style="margin-bottom: 3rem;">
-                    <span class="section-tag" data-aos="fade-down">DANS TOUTE L'ÎLE-DE-FRANCE</span>
-                    <h2 class="section-title" data-aos="fade-up" style="text-align: center;">Nettoyage à Domicile</h2>
-                    <h3 class="section-subtitle" data-aos="fade-up" data-aos-delay="100" style="text-align: center; color: var(--text-gray);">Nous redonnons vie à votre intérieur (Canapé, Matelas, Tapis)</h3>
-                </div>
                 
                 <div class="services-grid">
 

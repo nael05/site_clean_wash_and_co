@@ -1683,7 +1683,7 @@ body {
 }
 
 .supp-details-collapse.active {
-    max-height: 445px;
+    max-height: 650px;
     margin-top: 0;
     padding: 15px;
     border-color: var(--border-color);

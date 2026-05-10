@@ -46,14 +46,61 @@
             border-color: rgba(0, 240, 255, 0.3);
         }
 
+        .video-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+        }
+
         .video-card video {
             width: 100%;
             aspect-ratio: 9 / 16;
             object-fit: cover;
             display: block;
             background: #050814;
-            border-radius: 16px 16px 0 0;
         }
+
+        /* Overlay play/pause — desktop uniquement */
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.15);
+            transition: background 0.2s;
+        }
+
+        .video-overlay:hover { background: rgba(0, 0, 0, 0.3); }
+
+        .video-play-btn {
+            width: 64px;
+            height: 64px;
+            background: rgba(5, 8, 20, 0.65);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(0, 240, 255, 0.5);
+            backdrop-filter: blur(6px);
+            transition: transform 0.2s, background 0.2s, border-color 0.2s;
+            pointer-events: none;
+        }
+
+        .video-overlay:hover .video-play-btn {
+            transform: scale(1.1);
+            background: rgba(0, 240, 255, 0.18);
+            border-color: var(--primary);
+        }
+
+        .video-play-btn svg { color: #fff; }
+
+        /* Quand la vidéo joue on masque le bouton sauf au survol */
+        .video-overlay.playing { background: transparent; }
+        .video-overlay.playing .video-play-btn { opacity: 0; }
+        .video-overlay.playing:hover { background: rgba(0,0,0,0.2); }
+        .video-overlay.playing:hover .video-play-btn { opacity: 1; }
 
         .video-card-label {
             padding: 0.75rem 1rem;
@@ -522,30 +569,113 @@
 
     <script src="script.js"></script>
     <script>
+        // ── Switcher onglets ──────────────────────────────────────────
         function showGallery(section) {
-            const autoEl = document.getElementById('gallery-auto');
+            const autoEl     = document.getElementById('gallery-auto');
             const mobilierEl = document.getElementById('gallery-mobilier');
-            const btnAuto = document.getElementById('btn-auto');
-            const btnMobilier = document.getElementById('btn-mobilier');
-            const subAuto = document.getElementById('subtitle-gallery-auto');
-            const subMobilier = document.getElementById('subtitle-gallery-mobilier');
+            const btnAuto    = document.getElementById('btn-auto');
+            const btnMobilier= document.getElementById('btn-mobilier');
+            const subAuto    = document.getElementById('subtitle-gallery-auto');
+            const subMobilier= document.getElementById('subtitle-gallery-mobilier');
 
             if (section === 'auto') {
-                autoEl.style.display = 'block';
+                autoEl.style.display     = 'block';
                 mobilierEl.style.display = 'none';
                 btnAuto.classList.add('active');
                 btnMobilier.classList.remove('active');
-                subAuto.style.display = 'block';
-                subMobilier.style.display = 'none';
+                subAuto.style.display    = 'block';
+                subMobilier.style.display= 'none';
             } else {
-                autoEl.style.display = 'none';
+                autoEl.style.display     = 'none';
                 mobilierEl.style.display = 'block';
                 btnAuto.classList.remove('active');
                 btnMobilier.classList.add('active');
-                subAuto.style.display = 'none';
-                subMobilier.style.display = 'block';
+                subAuto.style.display    = 'none';
+                subMobilier.style.display= 'block';
             }
         }
+
+        // ── Setup vidéos ──────────────────────────────────────────────
+        const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+        document.querySelectorAll('.video-card').forEach(card => {
+            const video = card.querySelector('video');
+            if (!video) return;
+
+            // Charger les métadonnées pour avoir la première image
+            video.preload = 'metadata';
+            video.muted   = true;
+            video.playsInline = true;
+            video.loop    = true;
+            video.removeAttribute('controls');
+
+            // Afficher le premier frame dès que possible
+            video.addEventListener('loadedmetadata', () => {
+                video.currentTime = 0.001;
+            }, { once: true });
+
+            // Wrap la vidéo dans un .video-wrapper si pas déjà fait
+            if (!card.querySelector('.video-wrapper')) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'video-wrapper';
+                video.parentNode.insertBefore(wrapper, video);
+                wrapper.appendChild(video);
+            }
+            const wrapper = card.querySelector('.video-wrapper');
+
+            if (isMobile) {
+                // ── MOBILE : autoplay au scroll ──────────────────────
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            video.play().catch(() => {});
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(video);
+
+            } else {
+                // ── DESKTOP : bouton play/pause centré ───────────────
+                const overlay = document.createElement('div');
+                overlay.className = 'video-overlay';
+                overlay.innerHTML = `
+                    <div class="video-play-btn">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon class="icon-play" points="5,3 19,12 5,21"/>
+                            <g class="icon-pause" style="display:none">
+                                <rect x="5" y="3" width="4" height="18"/>
+                                <rect x="15" y="3" width="4" height="18"/>
+                            </g>
+                        </svg>
+                    </div>`;
+                wrapper.appendChild(overlay);
+
+                const iconPlay  = overlay.querySelector('.icon-play');
+                const iconPause = overlay.querySelector('.icon-pause');
+
+                overlay.addEventListener('click', () => {
+                    if (video.paused) {
+                        video.play().catch(() => {});
+                    } else {
+                        video.pause();
+                    }
+                });
+
+                video.addEventListener('play', () => {
+                    overlay.classList.add('playing');
+                    iconPlay.style.display  = 'none';
+                    iconPause.style.display = 'block';
+                });
+
+                video.addEventListener('pause', () => {
+                    overlay.classList.remove('playing');
+                    iconPlay.style.display  = 'block';
+                    iconPause.style.display = 'none';
+                });
+            }
+        });
     </script>
 </body>
 </html>

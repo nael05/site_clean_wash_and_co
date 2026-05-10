@@ -602,29 +602,27 @@
             const video = card.querySelector('video');
             if (!video) return;
 
-            // Charger les métadonnées pour avoir la première image
-            video.preload = 'metadata';
-            video.muted   = true;
+            // Métadonnées + premier frame comme miniature
+            video.preload     = 'metadata';
+            video.muted       = true;
             video.playsInline = true;
-            video.loop    = true;
-            video.removeAttribute('controls');
+            video.loop        = true;
+            video.controls    = true;
 
-            // Afficher le premier frame dès que possible
             video.addEventListener('loadedmetadata', () => {
                 video.currentTime = 0.001;
             }, { once: true });
 
-            // Wrap la vidéo dans un .video-wrapper si pas déjà fait
+            // Wrap dans .video-wrapper si pas déjà fait
             if (!card.querySelector('.video-wrapper')) {
                 const wrapper = document.createElement('div');
                 wrapper.className = 'video-wrapper';
                 video.parentNode.insertBefore(wrapper, video);
                 wrapper.appendChild(video);
             }
-            const wrapper = card.querySelector('.video-wrapper');
 
             if (isMobile) {
-                // ── MOBILE : autoplay au scroll ──────────────────────
+                // MOBILE : autoplay quand la vidéo est à l'écran
                 const observer = new IntersectionObserver(entries => {
                     entries.forEach(e => {
                         if (e.isIntersecting) {
@@ -635,45 +633,6 @@
                     });
                 }, { threshold: 0.5 });
                 observer.observe(video);
-
-            } else {
-                // ── DESKTOP : bouton play/pause centré ───────────────
-                const overlay = document.createElement('div');
-                overlay.className = 'video-overlay';
-                overlay.innerHTML = `
-                    <div class="video-play-btn">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                            <polygon class="icon-play" points="5,3 19,12 5,21"/>
-                            <g class="icon-pause" style="display:none">
-                                <rect x="5" y="3" width="4" height="18"/>
-                                <rect x="15" y="3" width="4" height="18"/>
-                            </g>
-                        </svg>
-                    </div>`;
-                wrapper.appendChild(overlay);
-
-                const iconPlay  = overlay.querySelector('.icon-play');
-                const iconPause = overlay.querySelector('.icon-pause');
-
-                overlay.addEventListener('click', () => {
-                    if (video.paused) {
-                        video.play().catch(() => {});
-                    } else {
-                        video.pause();
-                    }
-                });
-
-                video.addEventListener('play', () => {
-                    overlay.classList.add('playing');
-                    iconPlay.style.display  = 'none';
-                    iconPause.style.display = 'block';
-                });
-
-                video.addEventListener('pause', () => {
-                    overlay.classList.remove('playing');
-                    iconPlay.style.display  = 'block';
-                    iconPause.style.display = 'none';
-                });
             }
         });
     </script>

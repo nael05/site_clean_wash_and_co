@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nael05.github.io/site_clean_wash_and_co/sitemap.xml

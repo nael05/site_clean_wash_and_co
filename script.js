@@ -1,14 +1,7 @@
-// ===================================
-// NAVIGATION
-// ===================================
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
-const navLinkElements = document.querySelectorAll('.nav-link');
-
-// ===================================
-// NAVIGATION INTELLIGENTE (HIDE/SHOW)
-// ===================================
+const navLinkElements = document.querySelectorAll('.nav-link');
 let lastScrollTop = 0;
 
 window.addEventListener('scroll', () => {
@@ -31,13 +24,9 @@ window.addEventListener('scroll', () => {
     }
 
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
-
-// Mobile menu toggle
+});
 navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    
-    // Animate hamburger
+    navLinks.classList.toggle('active');
     const spans = navToggle.querySelectorAll('span');
     if (navLinks.classList.contains('active')) {
         spans[0].style.transform = 'rotate(45deg) translateY(10px)';
@@ -50,9 +39,7 @@ navToggle.addEventListener('click', () => {
         spans[2].style.transform = 'none';
         document.body.style.overflow = ''; // Restore scrolling
     }
-});
-
-// Active nav link on scroll
+});
 const sections = document.querySelectorAll('section[id]');
 
 function updateActiveLink() {
@@ -74,9 +61,7 @@ function updateActiveLink() {
     });
 }
 
-window.addEventListener('scroll', updateActiveLink);
-
-// Close mobile menu on link click
+window.addEventListener('scroll', updateActiveLink);
 navLinkElements.forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
@@ -86,11 +71,7 @@ navLinkElements.forEach(link => {
         spans[2].style.transform = 'none';
         document.body.style.overflow = '';
     });
-});
-
-// ===================================
-// SCROLL TO TOP BUTTON
-// ===================================
+});
 const scrollTopBtn = document.getElementById('scrollTop');
 
 window.addEventListener('scroll', () => {
@@ -106,11 +87,7 @@ scrollTopBtn.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
-});
-
-// ===================================
-// ANIMATED COUNTERS
-// ===================================
+});
 const statNumbers = document.querySelectorAll('.stat-number');
 let hasAnimated = false;
 
@@ -121,9 +98,7 @@ function animateCounters() {
     if (!statsSection) return;
     
     const rect = statsSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    
-    // Trigger when section is 60% visible
+    const windowHeight = window.innerHeight;
     if (rect.top <= windowHeight * 0.8 && rect.bottom >= 0) {
         hasAnimated = true;
         
@@ -148,13 +123,8 @@ function animateCounters() {
     }
 }
 
-window.addEventListener('scroll', animateCounters);
-// Also try on load in case it's already visible
-window.addEventListener('load', animateCounters);
-
-// ===================================
-// ANIMATE ON SCROLL (AOS)
-// ===================================
+window.addEventListener('scroll', animateCounters);
+window.addEventListener('load', animateCounters);
 function initAOS() {
     const elements = document.querySelectorAll('[data-aos]');
     
@@ -166,8 +136,7 @@ function initAOS() {
                 const delay = parseInt(entry.target.getAttribute('data-aos-delay')) || 0;
                 setTimeout(() => {
                     entry.target.classList.add('aos-animate');
-                }, delay);
-                // Optionally unobserve after animation
+                }, delay);
                 observer.unobserve(entry.target);
             }
         });
@@ -179,46 +148,29 @@ function initAOS() {
     elements.forEach(element => {
         observer.observe(element);
     });
-}
-
-// Initialize AOS when DOM is fully loaded
+}
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAOS);
 } else {
     initAOS();
-}
-
-// ===================================
-// COMPARISON SLIDER
-// ===================================
+}
 const sliders = document.querySelectorAll('.comparison-slider');
 
-sliders.forEach(slider => {
-    // Elements
+sliders.forEach(slider => {
     const beforeImage = slider.querySelector('.c-before');
     const beforeImgTag = beforeImage.querySelector('img');
     const handle = slider.querySelector('.c-handle');
-    let isDown = false;
-
-    // Functions
+    let isDown = false;
     const move = (e) => {
-        if (!isDown) return;
-        
-        // Get dimensions
+        if (!isDown) return;
         const rect = slider.getBoundingClientRect();
         const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-        const x = clientX - rect.left;
-        
-        // Boundaries
+        const x = clientX - rect.left;
         let position = Math.max(0, Math.min(x, rect.width));
-        let percentage = (position / rect.width) * 100;
-
-        // Apply styles
+        let percentage = (position / rect.width) * 100;
         beforeImage.style.width = `${percentage}%`;
         handle.style.left = `${percentage}%`;
-    };
-
-    // Event Listeners - Mouse
+    };
     slider.addEventListener('mousedown', (e) => {
         isDown = true;
         move(e);
@@ -232,9 +184,7 @@ sliders.forEach(slider => {
         if (!isDown) return;
         move(e);
         e.preventDefault(); 
-    });
-
-    // Event Listeners - Touch (Mobile)
+    });
     slider.addEventListener('touchstart', (e) => {
         isDown = true;
         move(e);
@@ -248,11 +198,7 @@ sliders.forEach(slider => {
         if (!isDown) return;
         move(e);
     }, { passive: false });
-});
-
-// ===================================
-// SMOOTH SCROLL
-// ===================================
+});
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -267,11 +213,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
-});
-
-// ===================================
-// PARALLAX EFFECT FOR GRADIENT SPHERES
-// ===================================
+});
 const spheres = document.querySelectorAll('.gradient-sphere');
 
 window.addEventListener('scroll', () => {
@@ -282,11 +224,7 @@ window.addEventListener('scroll', () => {
         const yPos = -(scrolled * speed);
         sphere.style.transform = `translateY(${yPos}px)`;
     });
-});
-
-// ===================================
-// CURSOR EFFECT (Optional - Desktop only)
-// ===================================
+});
 if (window.innerWidth > 768) {
     const cursor = document.createElement('div');
     cursor.classList.add('custom-cursor');
@@ -331,9 +269,7 @@ if (window.innerWidth > 768) {
     document.addEventListener('mouseleave', () => {
         cursor.style.opacity = '0';
         cursorDot.style.opacity = '0';
-    });
-    
-    // Interactive elements
+    });
     const interactiveElements = document.querySelectorAll('a, button, input, select, textarea');
     
     interactiveElements.forEach(el => {
@@ -363,11 +299,7 @@ if (window.innerWidth > 768) {
     }
     
     animateCursor();
-}
-
-// ===================================
-// PERFORMANCE OPTIMIZATION
-// ===================================
+}
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -383,13 +315,8 @@ if ('IntersectionObserver' in window) {
     document.querySelectorAll('img[data-src]').forEach(img => {
         imageObserver.observe(img);
     });
-}
-
-// ===================================
-// INITIALIZE ON LOAD
-// ===================================
-window.addEventListener('load', () => {
-    // Hide preloader if exists
+}
+window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
     if (preloader) {
         preloader.style.opacity = '0';
@@ -414,11 +341,7 @@ function toggleCardSupp(button) {
     if (icon) {
         icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
     }
-}
-
-// ===================================
-// DÉROULER LES CARTES SERVICES
-// ===================================
+}
 function toggleServiceInfo(button) {
     const content = button.nextElementSibling;
     content.classList.toggle('active');
@@ -434,40 +357,29 @@ function toggleServiceInfo(button) {
         textSpan.textContent = "Plus d'infos";
         icon.style.transform = 'rotate(0deg)';
     }
-}
-
-// ===================================
-// TRI DES SERVICES (AUTO / MOBILIER / TARIF)
-// ===================================
-function filterCategory(category) {
-    // 1. Gérer l'apparence des 3 boutons
+}
+function filterCategory(category) {
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.classList.remove('active');
         const btnText = btn.innerText.toLowerCase();
         if(category === 'auto' && btnText.includes('auto')) btn.classList.add('active');
         if(category === 'domicile' && btnText.includes('mobilier')) btn.classList.add('active');
         if(category === 'tarif' && btnText.includes('tarif')) btn.classList.add('active');
-    });
-
-    // 2. Cibler les éléments
+    });
     const gridAuto = document.querySelector('#auto .services-grid'); 
     const sectionDomicile = document.getElementById('domicile');     
     const sectionTarif = document.getElementById('tarif');     
     
     const subtitleAuto = document.getElementById('subtitle-auto');
     const subtitleDomicile = document.getElementById('subtitle-domicile');
-    const subtitleTarif = document.getElementById('subtitle-tarif');
-
-    // 3. Masquer tout le monde pour réinitialiser
+    const subtitleTarif = document.getElementById('subtitle-tarif');
     if(gridAuto) { gridAuto.style.display = 'none'; gridAuto.classList.remove('category-fade'); }
     if(sectionDomicile) { sectionDomicile.style.display = 'none'; sectionDomicile.classList.remove('category-fade'); }
     if(sectionTarif) { sectionTarif.style.display = 'none'; sectionTarif.classList.remove('category-fade'); }
     
     if(subtitleAuto) subtitleAuto.style.display = 'none';
     if(subtitleDomicile) subtitleDomicile.style.display = 'none';
-    if(subtitleTarif) subtitleTarif.style.display = 'none';
-
-    // 4. Afficher la bonne catégorie (avec un mini délai pour relancer l'animation CSS)
+    if(subtitleTarif) subtitleTarif.style.display = 'none';
     setTimeout(() => {
         if (category === 'auto') {
             if(gridAuto) { gridAuto.style.display = 'grid'; gridAuto.classList.add('category-fade'); }

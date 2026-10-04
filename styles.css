@@ -1,6 +1,3 @@
-/* ===================================
-   VARIABLES & RESET
-   =================================== */
 :root {
     --primary: #00f0ff;
     --primary-dark: #00b8cc;
@@ -58,9 +55,7 @@ body {
     width: 100%;
 }
 
-/* ===================================
-   NAVIGATION (Refonte complète)
-   =================================== */
+
 .navbar {
     position: fixed;
     top: 0;
@@ -212,9 +207,7 @@ body {
 .nav-link:hover::after {
     width: 100%;
 }
-/* ===================================
-   HERO SECTION
-   =================================== */
+
 .hero {
     position: relative;
     min-height: 100vh;
@@ -517,9 +510,7 @@ body {
     }
 }
 
-/* ===================================
-   SERVICES SECTION
-   =================================== */
+
 .services {
     padding: var(--spacing-xl) 0;
     position: relative;
@@ -687,9 +678,7 @@ body {
     font-weight: bold;
 }
 
-/* ===================================
-   PROCESS SECTION
-   =================================== */
+
 .process {
     padding: var(--spacing-xl) 0;
     background: linear-gradient(180deg, transparent, rgba(10, 14, 39, 0.3), transparent);
@@ -758,9 +747,7 @@ body {
     line-height: 1.7;
 }
 
-/* ===================================
-   GALLERY SECTION
-   =================================== */
+
 .gallery {
     padding: var(--spacing-xl) 0;
     position: relative;
@@ -774,9 +761,7 @@ body {
     margin: var(--spacing-sm) auto 0;
 }
 
-/* ===================================
-   CONTACT SECTION (DESIGN AMÉLIORÉ)
-   =================================== */
+
 .contact {
     padding: var(--spacing-xl) 0;
     position: relative;
@@ -861,7 +846,7 @@ body {
     letter-spacing: 1px;
 }
 
-/* Responsive ajustements */
+
 @media (max-width: 768px) {
     .contact .info-items {
         grid-template-columns: 1fr;
@@ -974,9 +959,7 @@ body {
     resize: vertical;
 }
 
-/* ===================================
-   FOOTER
-   =================================== */
+
 .footer {
     background: var(--secondary);
     border-top: 1px solid var(--border-color);
@@ -1065,9 +1048,7 @@ body {
     transform: translateY(-3px);
 }
 
-/* ===================================
-   SCROLL TO TOP BUTTON
-   =================================== */
+
 #scrollTop {
     position: fixed;
     bottom: 30px;
@@ -1100,9 +1081,7 @@ body {
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
 }
 
-/* ===================================
-   ANIMATIONS ON SCROLL
-   =================================== */
+
 [data-aos] {
     opacity: 0;
     transform: translateY(30px);
@@ -1130,9 +1109,7 @@ body {
     transform: translateX(0);
 }
 
-/* ===================================
-   NEW COMPARISON SLIDER STYLES
-   =================================== */
+
 .comparison-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -1260,11 +1237,9 @@ body {
     color: var(--primary);
 }
 
-/* ===================================
-   RESPONSIVE DESIGN UPDATE
-   =================================== */
 
-/* Tablette */
+
+
 @media (max-width: 1024px) {
     .hero-title {
         font-size: 4rem;
@@ -1306,7 +1281,7 @@ body {
     }
 }
 
-/* Mobile Large */
+
 @media (max-width: 768px) {
     :root {
         --spacing-md: 1.5rem;
@@ -1320,7 +1295,7 @@ body {
         overflow: hidden;
     }
     
-    /* Navigation Mobile */
+    
     .nav-links {
         position: fixed;
         top: 0;
@@ -1422,7 +1397,7 @@ body {
     }
 }
 
-/* Mobile Small */
+
 @media (max-width: 480px) {
     :root {
         --spacing-sm: 0.75rem;
@@ -1503,9 +1478,7 @@ body {
         height: 40px;
     }
 }
-/* ===================================
-   AVIS DÉFILANTS 
-   =================================== */
+
 .reviews-ticker {
     margin-top: var(--spacing-lg);
     width: 100%;
@@ -1532,7 +1505,7 @@ body {
     padding-right: 20px;
     animation: ticker 100s linear infinite; 
 }
-/* Pause l'animation au survol */
+
 .reviews-ticker:hover .ticker-group {
     animation-play-state: paused;
 }
@@ -1573,7 +1546,7 @@ body {
     100% { transform: translateX(-100%); }
 }
 
-/* Responsive mobile */
+
 @media (max-width: 768px) {
     .review-card {
         width: 280px;
@@ -1612,9 +1585,7 @@ body {
     padding-top: 10px;
 }
 
-/* ===================================
-   BOUTONS DE SUPPLÉMENTS
-   =================================== */
+
 .card-supplement-container {
     margin: 20px 0 10px;
     border-top: 1px solid var(--border-color);
@@ -1643,7 +1614,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Effet de brillance au survol (identique au bouton contact) */
+
 .btn-toggle-supp::before {
     content: '';
     position: absolute;
@@ -1665,14 +1636,14 @@ body {
     filter: brightness(1.1);
 }
 
-/* Style pour l'icône à l'intérieur du bouton */
+
 .btn-toggle-supp i {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 1rem;
     margin-left: 10px;
 }
 
-/* Détails du contenu rétractable */
+
 .supp-details-collapse {
     max-height: 0;
     overflow: hidden;
@@ -1729,7 +1700,7 @@ body {
     }
 }
 
-/* --- PAGE MENTIONS LÉGALES --- */
+
 .legal-main {
     padding: 150px 0 80px;
     position: relative;
@@ -1798,7 +1769,7 @@ body {
     }
 }
 
-/* --- STYLE SPECIFIQUE MENTIONS LEGALES --- */
+
 .legal-page .legal-main {
     padding: 150px 0 80px;
     position: relative;
@@ -1838,16 +1809,14 @@ body {
     margin-right: 10px;
 }
 
-/* ===================================
-   CARTE SERVICE : BOUTON PLUS D'INFO (100% Responsive)
-   =================================== */
+
 .btn-more-info {
     background: rgba(10, 14, 39, 0.6);
     color: var(--primary);
     width: 100%;
-    /* Padding flexible */
+    
     padding: 1.2rem 1rem;
-    /* Taille de police qui s'adapte dynamiquement à l'écran */
+    
     font-size: clamp(0.85rem, 3vw, 0.95rem);
     font-family: var(--font-display);
     font-weight: 700;
@@ -1866,13 +1835,13 @@ body {
     overflow: hidden;
     z-index: 2;
     box-sizing: border-box;
-    /* Optimisations tactiles (Mobile) */
+    
     user-select: none; 
     -webkit-tap-highlight-color: transparent; 
     touch-action: manipulation;
 }
 
-/* Reflet métallique de base */
+
 .btn-more-info::after {
     content: '';
     position: absolute;
@@ -1885,9 +1854,7 @@ body {
     z-index: 1;
 }
 
-/* * Le survol (hover) s'applique UNIQUEMENT sur les appareils avec une vraie souris.
- * Cela évite le bug du bouton qui reste allumé sur mobile après avoir appuyé.
- */
+
 @media (hover: hover) {
     .btn-more-info:hover::after {
         left: 100%;
@@ -1901,7 +1868,7 @@ body {
     }
 }
 
-/* État actif (quand le menu est ouvert) : valable sur PC et Mobile */
+
 .btn-more-info.active {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: var(--bg-dark);
@@ -1915,7 +1882,7 @@ body {
     z-index: 2;
 }
 
-/* Style de l'icône et animations */
+
 .btn-more-info i {
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 1.1em;
@@ -1935,8 +1902,8 @@ body {
     animation: none;
 }
 
-/* Contenu déroulant */
-/* Contenu déroulant */
+
+
 .service-info-collapse {
     max-height: 0;
     overflow: hidden;
@@ -1945,7 +1912,7 @@ body {
     padding-bottom: 0 !important;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* Correctif Mobile & Safari iOS */
+    
     flex: none !important;
     min-height: 0 !important;
     visibility: hidden;
@@ -1957,12 +1924,12 @@ body {
     padding-top: var(--spacing-md) !important;
     padding-bottom: var(--spacing-md) !important;
     
-    /* On réactive le comportement flex à l'ouverture */
+    
     flex: 1 !important;
     visibility: visible;
 }
 
-/* Ajustements pour les très petits écrans (ex: iPhone SE) */
+
 @media (max-width: 480px) {
     .btn-more-info {
         padding: 1rem 0.5rem;
@@ -1970,9 +1937,7 @@ body {
     }
 }
 
-/* ===================================
-   PRICING SECTION (ACCUEIL)
-   =================================== */
+
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -2085,20 +2050,18 @@ body {
     color: var(--primary);
 }
 
-/* ===================================
-   SÉLECTEUR DE CATÉGORIES (TRIANGLE INVERSÉ)
-   =================================== */
+
 .category-selector-triangle {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* Espace vertical entre la ligne du haut et celle du bas */
+    gap: 15px; 
     margin: 0 auto;
 }
 
 .cat-row-top {
     display: flex;
-    gap: 10px; /* Espace horizontal entre Automobile et Mobilier */
+    gap: 10px; 
     background: rgba(10, 14, 39, 0.8);
     border: 1px solid var(--border-color);
     border-radius: 50px;
@@ -2140,7 +2103,7 @@ body {
     color: var(--primary);
 }
 
-/* Animation d'apparition fluide */
+
 .category-fade {
     animation: fadeIn 0.5s ease-in-out;
 }
@@ -2149,7 +2112,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Mise en page Ordinateur (Desktop) --- */
+
 .category-nav {
     display: flex;
     justify-content: center;
@@ -2170,23 +2133,23 @@ body {
     gap: 12px;
 }
 
-/* --- Mise en page Téléphone (Mobile) --- */
+
 @media (max-width: 768px) {
     .category-nav {
-        flex-direction: column; /* Empile les groupes verticalement */
+        flex-direction: column; 
         gap: 20px;
     }
 
     .main-categories {
         width: 100%;
-        justify-content: center; /* Centre Automobile et Mobilier */
+        justify-content: center; 
     }
 
     .price-toggle-wrapper {
         width: 100%;
-        justify-content: center; /* Centre le switch Tarifs en dessous */
+        justify-content: center; 
         padding: 10px;
-        background: rgba(0, 240, 255, 0.05); /* Intègre visuellement le tarif au curseur */
+        background: rgba(0, 240, 255, 0.05); 
         border-radius: 30px;
         border: 1px solid var(--border-color);
     }

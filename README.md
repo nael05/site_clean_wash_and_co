@@ -21,7 +21,7 @@ Pour lancer le projet en local, suivez ces étapes simples :
 
 1. Clonez ce dépôt.
 2. Naviguez dans le dossier du projet (`site_clean_wash_and_co`).
-3. Double-cliquez sur le fichier `run.bat` depuis Windows, ou ouvrez simplement le fichier `index.html` dans votre navigateur web.
+3. Ouvrez simplement le fichier `index.html` dans votre navigateur web.
 
 ## Arborescence du Projet
 ```
@@ -34,6 +34,5 @@ site_clean_wash_and_co/
 ├── gallery.html    # Galerie des réalisations (photos et vidéos)
 ├── contact.html    # Page de contact
 ├── styles.css      # Feuille de style globale et animations
-├── script.js       # Scripts interactifs et logiques d'UI
-└── run.bat         # Script d'exécution rapide pour Windows
+└── script.js       # Scripts interactifs et logiques d'UI
 ```
